@@ -1,9 +1,7 @@
 <template> 
   <div > 
-    <h1>{{title}}</h1>
-    <button @click="number++"> Øke</button>
-    <button @click="number--"> Minske</button>
-    <h2>{{number}}</h2>
+    <input  @input="handleSlideChange(sliderValue)" type="range" min="0" max="5" v-model="sliderValue">
+    <h2>{{sliderValue}}</h2>
   </div>
 </template>
 
@@ -13,8 +11,15 @@ export default {
     data(){
         return{
             title:'Anders og Lars sin app',
-            number: 0
+            sliderValue: 0,
         }
+    },
+
+    methods: {
+      handleSlideChange(value){
+     
+      this.sliderValue = value;
+      }
     }
 }
 </script>
