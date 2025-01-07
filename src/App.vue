@@ -1,8 +1,8 @@
 <template> 
   <div > 
-    <label for=""></label>
-    <input id=""  @input="handleSlideChange(sliderValue)" type="range" min="0" max="5" v-model="sliderValue">
-    <h2>{{sliderValue}}</h2>
+    <label for="Energi">Energi</label>
+    <input id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+    <h2>{{energyValue}}</h2>
   </div>
 </template>
 
@@ -12,14 +12,14 @@ export default {
     data(){
         return{
             title:'Anders og Lars sin app',
-            sliderValue: 0,
+            energyValue: 0,
         }
     },
 
     methods: {
-      handleSlideChange(value){
+      handleEnergyChange(value){
      
-      this.sliderValue = value;
+      this.energyValueValue = value;
       }
     }
 }
