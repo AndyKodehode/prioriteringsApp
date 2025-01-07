@@ -2,20 +2,20 @@
 <div>
   <div > 
     <label for="Energi">Energi</label>
-    <input id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+    <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
     <h3>{{energyValue}}</h3>
   </div>
 
     <div > 
       <label for="AndresBehov">Andres behov</label>
-      <input id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
+      <input class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
       <h3>{{needOfOhterValue}}</h3>
    </div>
 
    
     <div > 
       <label for="KortSiktig">Kort sikt</label>
-      <input id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
+      <input class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
       <h3>{{shortTermValue}}</h3>
    </div>
 
