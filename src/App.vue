@@ -1,6 +1,7 @@
 <template> 
   <div > 
-    <input  @input="handleSlideChange(sliderValue)" type="range" min="0" max="5" v-model="sliderValue">
+    <label for=""></label>
+    <input id=""  @input="handleSlideChange(sliderValue)" type="range" min="0" max="5" v-model="sliderValue">
     <h2>{{sliderValue}}</h2>
   </div>
 </template>
