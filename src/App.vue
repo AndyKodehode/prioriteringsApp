@@ -1,9 +1,52 @@
 <template> 
+<div>
   <div > 
     <label for="Energi">Energi</label>
     <input id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
-    <h2>{{energyValue}}</h2>
+    <h3>{{energyValue}}</h3>
   </div>
+
+    <div > 
+      <label for="AndresBehov">Andres behov</label>
+      <input id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
+      <h3>{{needOfOhterValue}}</h3>
+   </div>
+
+   
+    <div > 
+      <label for="KortSiktig">Kort sikt</label>
+      <input id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
+      <h3>{{shortTermValue}}</h3>
+   </div>
+
+   <button @click="showHideAnswer" >result</button>
+
+   <div v-if="isVisible" >
+    <ul>
+       <li >
+         {{energyMessage}}
+       </li>
+
+       <li>
+        {{otherMessage}}
+       </li>
+
+       <li>
+        {{shortTermMessage}}
+       </li>
+
+       <li>
+
+       </li>
+
+       <li>
+
+       </li>
+
+    </ul>
+
+   </div>
+</div>
 </template>
 
 <script>
@@ -13,6 +56,18 @@ export default {
         return{
             title:'Anders og Lars sin app',
             energyValue: 0,
+            needOfOhterValue: 0,
+            shortTermValue: 0,
+            longTermValue: 0,
+            careerValue: 0,
+
+            energyMessage: "",
+            otherMessage: "",
+            shortTermMessage: "",
+            longTermMessage: "",
+            careerMessage: "",
+
+            isVisible: false
         }
     },
 
@@ -20,6 +75,57 @@ export default {
       handleEnergyChange(value){
      
       this.energyValueValue = value;
+
+      if(this.energyValue <= 1){
+        this.energyMessage = "Dette krever mye! Kanskje bedre gjøre noe som gir deg mer energi?"
+      } else if( this.energyValue == 2){
+        this.energyMessage = "Krever litt energi av deg"
+      } else if( this.energyValue == 3){
+        this.energyMessage = "Dette hverken krever eller gir deg energi."
+      }else if( this.energyValue == 4){
+        this.energyMessage = "Dette gir jo litt energi!"
+      } else if( this.energyValue == 5){
+        this.energyMessage = "Ojoj, dette fyller opp energilageret"
+      } 
+      },
+
+      handleNeedOfOther(value){
+
+        this.needOfOhterValue = value
+
+        if(this.needOfOhterValue <= 1){
+            this.otherMessage = "Dette betyr lite for de rundt deg. Kanskje du først og fremst skal tenke på deg selv?"
+         } else if( this.needOfOhterValue == 2){
+          this.otherMessage = "Betyr jo litt for andre, men er det verdt det?"
+         }else if( this.needOfOhterValue == 3){
+          this.otherMessage = "Er jo hyggelig da."
+         }else if( this.needOfOhterValue == 4){
+          this.otherMessage = "Dette betyr noe! Her blir de sikkert glad."
+         }else if( this.needOfOhterValue == 5){
+          this.otherMessage = "That’s what friends are for!"
+         }
+      },
+
+
+      handleShortTerm(value){
+
+        this.shortTermValue = value
+
+        if(this.shortTermValue <= 1){
+            this.shortTermMessage = "Veeeeldig dyrt. Anbefaler å styre unna med mindre du virkelig innerst inne trenger dette. Inkassobyrået gnir seg i henda nå."
+         } else if( this.shortTermValue == 2){
+          this.shortTermMessage = "Ganske dyrt. Her bør du bruke noen dager til å tenke på det. Husk at du sparer til bolig!"
+         }else if( this.shortTermValue == 3){
+          this.shortTermMessage = "Litt dyrt. Vente til i morra kanskje?"
+         }else if( this.shortTermValue == 4){
+          this.shortTermMessage = "Koster jo ikke såå mye."
+         }else if( this.shortTermValue == 5){
+          this.shortTermMessage = "Koster ingen ting. Så økonomisk er det ingen ting å tape her."
+         }
+      },
+
+      showHideAnswer(){
+          this.isVisible = !this.isVisible
       }
     }
 }
