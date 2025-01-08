@@ -1,5 +1,14 @@
 <template> 
 <div>
+   
+   <div class="outerCircle">
+    <div class="innerCircle">
+
+    </div>
+      
+   </div>
+
+
   <div > 
     <label for="Energi">Energi</label>
     <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
@@ -57,9 +66,13 @@
 
     </ul>
 
+   
     <h2>Anbefaling for kjøp: {{precent}} %</h2>
 
    </div>
+
+    
+
 </div>
 </template>
 
