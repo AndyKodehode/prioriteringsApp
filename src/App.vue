@@ -1,8 +1,37 @@
 <template> 
 <div>
-   
-  
+   <div>
+      <circle-progress :percent="precent" show-percent="true"  class="custom-circle-progress"> 
+        
+      </circle-progress>
 
+      <h2>Anbefaling for kjøp: {{precent}} %</h2>
+   </div>
+
+   <div v-if="isVisible" >
+    <ul>
+       <li >
+         {{energyMessage}}
+       </li>
+
+       <li>
+        {{otherMessage}}
+       </li>
+
+       <li>
+        {{shortTermMessage}}
+       </li>
+
+       <li>
+        {{longTermMessage}}
+       </li>
+
+       <li>
+        {{careerMessage}}
+       </li>
+
+    </ul>
+  </div>
 
   <div > 
     <label for="Energi">Energi</label>
@@ -37,34 +66,12 @@
 
    <button @click="showHideAnswer" >result</button>
 
-   <div v-if="isVisible" >
-    <ul>
-       <li >
-         {{energyMessage}}
-       </li>
-
-       <li>
-        {{otherMessage}}
-       </li>
-
-       <li>
-        {{shortTermMessage}}
-       </li>
-
-       <li>
-        {{longTermMessage}}
-       </li>
-
-       <li>
-        {{careerMessage}}
-       </li>
-
-    </ul>
+   
 
    
-    <h2>Anbefaling for kjøp: {{precent}} %</h2>
+    
 
-   </div>
+   
 
     
 
@@ -72,8 +79,14 @@
 </template>
 
 <script>
+
+import "vue3-circle-progress/dist/circle-progress.css";
+import CircleProgress from "vue3-circle-progress";
+
+
 export default {
     name: "App",
+    components: {CircleProgress},
     data(){
         return{
             title:'Anders og Lars sin app',
@@ -189,7 +202,7 @@ export default {
 
           let precentege = (total/ 25) * 100
 
-          this.precent = precentege
+          this.precent = precentege 
 
       }, 
 
