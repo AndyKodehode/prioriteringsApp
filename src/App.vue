@@ -1,12 +1,7 @@
 <template> 
 <div>
    
-   <div class="outerCircle">
-    <div class="innerCircle">
-
-    </div>
-      
-   </div>
+  
 
 
   <div > 
