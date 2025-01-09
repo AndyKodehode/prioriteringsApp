@@ -200,7 +200,7 @@ export default {
 
           let total = parseFloat(this.energyValue) + parseFloat(this.needOfOhterValue) + parseFloat(this.shortTermValue)+ parseFloat(this.longTermValue) + parseFloat(this.careerValue)
 
-          let precentege = (total/ 25) * 100
+          let precentege = Math.floor((total/ 25) * 100)
 
           this.precent = precentege 
 
