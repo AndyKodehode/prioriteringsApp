@@ -10,23 +10,23 @@
 
    <div v-if="isVisible" >
     <ul>
-       <li >
+       <li v-if="!energyOff" >
          {{energyMessage}}
        </li>
 
-       <li>
+       <li v-if="!needOfOtherOff" >
         {{otherMessage}}
        </li>
 
-       <li>
+       <li v-if="!shortTermOff">
         {{shortTermMessage}}
        </li>
 
-       <li>
+       <li v-if="!longTermOff">
         {{longTermMessage}}
        </li>
 
-       <li>
+       <li v-if="!careerOff">
         {{careerMessage}}
        </li>
 
@@ -34,12 +34,14 @@
   </div>
 
   <div > 
+    <input type="checkbox" v-model="energyOff" >
     <label for="Energi">Energi</label>
     <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
     <h3>{{energyValue}}</h3>
   </div>
 
     <div > 
+      <input type="checkbox" v-model="needOfOtherOff"  >
       <label for="AndresBehov">Andres behov</label>
       <input class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
       <h3>{{needOfOhterValue}}</h3>
@@ -47,18 +49,21 @@
 
    
     <div > 
+      <input type="checkbox" v-model="shortTermOff"  >
       <label for="KortSiktig">Kort sikt</label>
       <input class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
       <h3>{{shortTermValue}}</h3>
    </div>
 
    <div > 
+      <input type="checkbox" v-model="longTermOff"  >
       <label for="Langsiktig">Lang sikt</label>
       <input class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
       <h3>{{longTermValue}}</h3>
    </div>
 
    <div > 
+      <input type="checkbox"  v-model="careerOff" >
       <label for="Karriere">Karriere</label>
       <input class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
       <h3>{{careerValue}}</h3>
@@ -103,9 +108,32 @@ export default {
             careerMessage: "",
 
             isVisible: false,
-            precent: 0
+            precent: 0,
+            needOfOtherOff : false,
+            energyOff: false,
+            shortTermOff: false,
+            longTermOff: false,
+            careerOff: false
+
+
         }
     },
+
+    watch: {
+     energyOff(newValue, oldValue) {
+    console.log('energyOff changed:', newValue);
+      },
+
+      needOfOtherOff(newValue, oldValue) {
+    console.log('needOfOthers changed:', newValue);
+      },
+
+      shortTermOff(newValue, oldValue) {
+    console.log('shortTerm changed:', newValue);
+      },
+
+
+   },
 
     methods: {
       handleEnergyChange(value){
@@ -198,15 +226,52 @@ export default {
       showHideAnswer(){
           this.isVisible = !this.isVisible
 
-          let total = parseFloat(this.energyValue) + parseFloat(this.needOfOhterValue) + parseFloat(this.shortTermValue)+ parseFloat(this.longTermValue) + parseFloat(this.careerValue)
 
-          let precentege = Math.floor((total/ 25) * 100)
+     
+          
 
-          this.precent = precentege 
+
+          let values = [
+          { value: parseFloat(this.energyValue), isOff: this.energyOff },
+          { value: parseFloat(this.needOfOtherValue), isOff: this.needOfOtherOff },
+          { value: parseFloat(this.shortTermValue), isOff: this.shortTermOff },
+          { value: parseFloat(this.longTermValue), isOff: this.longTermOff },
+          { value: parseFloat(this.careerValue), isOff: this.careerOff }
+        ];
+
+          let activeValues = values.filter(item => !item.isOff);
+
+          console.log(activeValues)
+          let total = activeValues.reduce((sum, item) => sum + item.value, 0);
+          let divisor = activeValues.length * 5;  // Maximum possible total for active properties
+          let percentage = Math.floor((total / divisor) * 100);
+
+          this.precent = percentage 
+
+
+
 
       }, 
 
+      handleCheck(value){
+         
+         this.value = !this.value
+
+         
+         if(this.value === true){
+           console.log("check is on")
+         } else if(this.value === false){
+           console.log("check is off")
+         }
+
+         console.log("energy is:"+ " " + this.energyOff)
+         console.log("need of others is" + " " + this.needOfOtherOff)
+ 
+       }
+ 
+       }
+
       
     }
-}
+
 </script>
