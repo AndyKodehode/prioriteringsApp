@@ -33,13 +33,15 @@
     </ul>
   </div>
 
-  <div > 
-    <input type="checkbox" v-model="energyOff" >
-    <label for="Energi">Energi</label>
-    <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
-    <h3>{{energyValue}}</h3>
+  <div @click="handleCheck('energyOff')" class="padding"> 
+    <!--<input type="checkbox" v-model="energyOff" >-->
+    <div class="innerDiv">
+        <label for="Energi">Energi</label>
+        <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+        <h3>{{energyValue}}</h3>
+     </div>
   </div>
-
+<!--
     <div > 
       <input type="checkbox" v-model="needOfOtherOff"  >
       <label for="AndresBehov">Andres behov</label>
@@ -68,7 +70,7 @@
       <input class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
       <h3>{{careerValue}}</h3>
    </div>
-
+-->
    <button @click="showHideAnswer" >result</button>
 
    
@@ -123,10 +125,7 @@ export default {
     
 
     watch: {
-     energyOff(newValue, oldValue) {
-    console.log('energyOff changed:', newValue);
-      },
-
+  
       needOfOtherOff(newValue, oldValue) {
     console.log('needOfOthers changed:', newValue);
       },
@@ -135,9 +134,7 @@ export default {
     console.log('shortTerm changed:', newValue);
       },
 
-      needOfOhterValue(newValue, oldvalue){
-        console.log('otherValue is', newValue)
-      }
+      
 
 
    },
@@ -260,8 +257,10 @@ export default {
       }, 
 
       handleCheck(value){
-         
-         this.value = !this.value
+    
+        this[value] = !this[value];
+        console.log("energyOff is:", this[value]);
+         /*this.value = !this.value
 
          
          if(this.value === true){
@@ -271,7 +270,7 @@ export default {
          }
 
          console.log("energy is:"+ " " + this.energyOff)
-         console.log("need of others is" + " " + this.needOfOtherOff)
+         console.log("need of others is" + " " + this.needOfOtherOff)*/
  
        }
  
