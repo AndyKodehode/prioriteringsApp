@@ -1,7 +1,7 @@
 <template> 
 <div>
    <div>
-      <circle-progress :percent="precent" show-percent="true"  class="custom-circle-progress"> 
+      <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
         
       </circle-progress>
 
@@ -114,10 +114,13 @@ export default {
             shortTermOff: false,
             longTermOff: false,
             careerOff: false
-
+           
+            
 
         }
     },
+
+    
 
     watch: {
      energyOff(newValue, oldValue) {
@@ -131,6 +134,10 @@ export default {
       shortTermOff(newValue, oldValue) {
     console.log('shortTerm changed:', newValue);
       },
+
+      needOfOhterValue(newValue, oldvalue){
+        console.log('otherValue is', newValue)
+      }
 
 
    },
@@ -227,21 +234,20 @@ export default {
           this.isVisible = !this.isVisible
 
 
-     
-          
-
-
           let values = [
           { value: parseFloat(this.energyValue), isOff: this.energyOff },
-          { value: parseFloat(this.needOfOtherValue), isOff: this.needOfOtherOff },
+          { value: parseFloat(this.needOfOhterValue), isOff: this.needOfOtherOff },
           { value: parseFloat(this.shortTermValue), isOff: this.shortTermOff },
           { value: parseFloat(this.longTermValue), isOff: this.longTermOff },
           { value: parseFloat(this.careerValue), isOff: this.careerOff }
         ];
 
+        
+
           let activeValues = values.filter(item => !item.isOff);
 
-          console.log(activeValues)
+          
+
           let total = activeValues.reduce((sum, item) => sum + item.value, 0);
           let divisor = activeValues.length * 5;  // Maximum possible total for active properties
           let percentage = Math.floor((total / divisor) * 100);
