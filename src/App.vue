@@ -33,41 +33,46 @@
     </ul>
   </div>
 
-  <div @dblclick="handleCheck(energyOff)" class="padding"> 
+  <div  @dblclick="energyOff = !energyOff"
+       :class="['padding', { notActive: energyOff }]" > 
     <!--<input type="checkbox" v-model="energyOff" >-->
     <div class="innerDiv">
         <label for="Energi">Energi</label>
-        <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+        <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
         <h3>{{energyValue}}</h3>
      </div>
   </div>
 
-    <div @dblclick="handleCheck(needOfOtherOff)" class="padding"> 
+    <div @dblclick=" needOfOtherOff = !needOfOtherOff"
+        :class="['padding', { notActive: needOfOtherOff }]"> 
       <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
       <label for="AndresBehov">Andres behov</label>
-      <input class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
+      <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
       <h3>{{needOfOhterValue}}</h3>
    </div>
 
    
-    <div @dblclick="handleCheck(shortTermOff)" class="padding"> 
+    <div @dblclick="shortTermOff = !shortTermOff"
+        :class="['padding', { notActive:shortTermOff }]"> 
        <!--<input type="checkbox" v-model="shortTermOff"  >-->
-      <label for="KortSiktig">Kort sikt</label>
-      <input class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
+      <label for="KortSiktig">Pris</label>
+      <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
       <h3>{{shortTermValue}}</h3>
    </div>
 
-   <div @dblclick="handleCheck(longTermOff)" class="padding"> 
+   <div @dblclick="longTermOff = !longTermOff"
+        :class="['padding', { notActive:longTermOff }]"> 
        <!--<input type="checkbox" v-model="longTermOff"  >-->
       <label for="Langsiktig">Lang sikt</label>
-      <input class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
+      <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
       <h3>{{longTermValue}}</h3>
    </div>
 
-   <div @dblclick="handleCheck(careerOff)" class="padding"> 
+   <div @dblclick="careerOff = !careerOff"
+        :class="['padding', { notActive:careerOff }]"> 
       <!--<input type="checkbox"  v-model="careerOff" >-->
       <label for="Karriere">Karriere</label>
-      <input class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
+      <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
       <h3>{{careerValue}}</h3>
    </div>
 
@@ -280,6 +285,9 @@ export default {
     
         this[value] = !this[value];
         console.log("energyOff is:", this[value]);
+
+     
+
          /*this.value = !this.value
 
          
