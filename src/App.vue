@@ -1,7 +1,7 @@
 <template> 
 <div>
    <div>
-      <circle-progress :percent="precent" show-percent="true"  class="custom-circle-progress"> 
+      <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
         
       </circle-progress>
 
@@ -10,57 +10,69 @@
 
    <div v-if="isVisible" >
     <ul>
-       <li >
+       <li v-if="!energyOff" >
          {{energyMessage}}
        </li>
 
-       <li>
+       <li v-if="!needOfOtherOff" >
         {{otherMessage}}
        </li>
 
-       <li>
+       <li v-if="!shortTermOff">
         {{shortTermMessage}}
        </li>
 
-       <li>
+       <li v-if="!longTermOff">
         {{longTermMessage}}
        </li>
 
-       <li>
+       <li v-if="!careerOff">
         {{careerMessage}}
        </li>
 
     </ul>
   </div>
 
-  <div > 
-    <label for="Energi">Energi</label>
-    <input class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
-    <h3>{{energyValue}}</h3>
+  <div  @dblclick="energyOff = !energyOff"
+       :class="['padding', { notActive: energyOff }]" > 
+    <!--<input type="checkbox" v-model="energyOff" >-->
+    <div class="innerDiv">
+        <label for="Energi">Energi</label>
+        <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+        <h3>{{energyValue}}</h3>
+     </div>
   </div>
 
-    <div > 
+    <div @dblclick=" needOfOtherOff = !needOfOtherOff"
+        :class="['padding', { notActive: needOfOtherOff }]"> 
+      <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
       <label for="AndresBehov">Andres behov</label>
-      <input class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
+      <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
       <h3>{{needOfOhterValue}}</h3>
    </div>
 
    
-    <div > 
-      <label for="KortSiktig">Kort sikt</label>
-      <input class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
+    <div @dblclick="shortTermOff = !shortTermOff"
+        :class="['padding', { notActive:shortTermOff }]"> 
+       <!--<input type="checkbox" v-model="shortTermOff"  >-->
+      <label for="KortSiktig">Pris</label>
+      <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
       <h3>{{shortTermValue}}</h3>
    </div>
 
-   <div > 
+   <div @dblclick="longTermOff = !longTermOff"
+        :class="['padding', { notActive:longTermOff }]"> 
+       <!--<input type="checkbox" v-model="longTermOff"  >-->
       <label for="Langsiktig">Lang sikt</label>
-      <input class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
+      <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
       <h3>{{longTermValue}}</h3>
    </div>
 
-   <div > 
+   <div @dblclick="careerOff = !careerOff"
+        :class="['padding', { notActive:careerOff }]"> 
+      <!--<input type="checkbox"  v-model="careerOff" >-->
       <label for="Karriere">Karriere</label>
-      <input class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
+      <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
       <h3>{{careerValue}}</h3>
    </div>
 
@@ -82,9 +94,29 @@
 
 import "vue3-circle-progress/dist/circle-progress.css";
 import CircleProgress from "vue3-circle-progress";
+/*import { ref } from 'vue';
+import { useLongPress } from '@vueuse/core';*/
+
+
 
 
 export default {
+  /*setup() {
+    // Your existing function
+    const myFunction = () => {
+      console.log('Long press triggered!');
+      alert('Long press action executed!');
+    };
+
+    // Attach your function to useLongPress
+    const { bindings: longPressBindings } = useLongPress(handleCheck, {
+      duration: 500, // Set duration to 500ms (or your preferred time)
+    });
+
+    return { longPressBindings };
+  },*/
+
+
     name: "App",
     components: {CircleProgress},
     data(){
@@ -103,9 +135,34 @@ export default {
             careerMessage: "",
 
             isVisible: false,
-            precent: 0
+            precent: 0,
+            needOfOtherOff : false,
+            energyOff: false,
+            shortTermOff: false,
+            longTermOff: false,
+            careerOff: false
+           
+            
+
         }
     },
+
+    
+
+    watch: {
+  
+      needOfOtherOff(newValue, oldValue) {
+    console.log('needOfOthers changed:', newValue);
+      },
+
+      shortTermOff(newValue, oldValue) {
+    console.log('shortTerm changed:', newValue);
+      },
+
+      
+
+
+   },
 
     methods: {
       handleEnergyChange(value){
@@ -198,15 +255,56 @@ export default {
       showHideAnswer(){
           this.isVisible = !this.isVisible
 
-          let total = parseFloat(this.energyValue) + parseFloat(this.needOfOhterValue) + parseFloat(this.shortTermValue)+ parseFloat(this.longTermValue) + parseFloat(this.careerValue)
 
-          let precentege = Math.floor((total/ 25) * 100)
+          let values = [
+          { value: parseFloat(this.energyValue), isOff: this.energyOff },
+          { value: parseFloat(this.needOfOhterValue), isOff: this.needOfOtherOff },
+          { value: parseFloat(this.shortTermValue), isOff: this.shortTermOff },
+          { value: parseFloat(this.longTermValue), isOff: this.longTermOff },
+          { value: parseFloat(this.careerValue), isOff: this.careerOff }
+        ];
 
-          this.precent = precentege 
+        
+
+          let activeValues = values.filter(item => !item.isOff);
+
+          
+
+          let total = activeValues.reduce((sum, item) => sum + item.value, 0);
+          let divisor = activeValues.length * 5;  // Maximum possible total for active properties
+          let percentage = Math.floor((total / divisor) * 100);
+
+          this.precent = percentage 
+
+
+
 
       }, 
 
+      handleCheck(value){
+    
+        this[value] = !this[value];
+        console.log("energyOff is:", this[value]);
+
+     
+
+         /*this.value = !this.value
+
+         
+         if(this.value === true){
+           console.log("check is on")
+         } else if(this.value === false){
+           console.log("check is off")
+         }
+
+         console.log("energy is:"+ " " + this.energyOff)
+         console.log("need of others is" + " " + this.needOfOtherOff)*/
+ 
+       }
+ 
+       }
+
       
     }
-}
+
 </script>
