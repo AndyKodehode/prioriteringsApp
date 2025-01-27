@@ -33,7 +33,7 @@
     </ul>
   </div>
 
-  <div @click="handleCheck('energyOff')" class="padding"> 
+  <div @dblclick="handleCheck(energyOff)" class="padding"> 
     <!--<input type="checkbox" v-model="energyOff" >-->
     <div class="innerDiv">
         <label for="Energi">Energi</label>
@@ -41,36 +41,36 @@
         <h3>{{energyValue}}</h3>
      </div>
   </div>
-<!--
-    <div > 
-      <input type="checkbox" v-model="needOfOtherOff"  >
+
+    <div @dblclick="handleCheck(needOfOtherOff)" class="padding"> 
+      <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
       <label for="AndresBehov">Andres behov</label>
       <input class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
       <h3>{{needOfOhterValue}}</h3>
    </div>
 
    
-    <div > 
-      <input type="checkbox" v-model="shortTermOff"  >
+    <div @dblclick="handleCheck(shortTermOff)" class="padding"> 
+       <!--<input type="checkbox" v-model="shortTermOff"  >-->
       <label for="KortSiktig">Kort sikt</label>
       <input class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
       <h3>{{shortTermValue}}</h3>
    </div>
 
-   <div > 
-      <input type="checkbox" v-model="longTermOff"  >
+   <div @dblclick="handleCheck(longTermOff)" class="padding"> 
+       <!--<input type="checkbox" v-model="longTermOff"  >-->
       <label for="Langsiktig">Lang sikt</label>
       <input class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
       <h3>{{longTermValue}}</h3>
    </div>
 
-   <div > 
-      <input type="checkbox"  v-model="careerOff" >
+   <div @dblclick="handleCheck(careerOff)" class="padding"> 
+      <!--<input type="checkbox"  v-model="careerOff" >-->
       <label for="Karriere">Karriere</label>
       <input class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
       <h3>{{careerValue}}</h3>
    </div>
--->
+
    <button @click="showHideAnswer" >result</button>
 
    
@@ -89,9 +89,29 @@
 
 import "vue3-circle-progress/dist/circle-progress.css";
 import CircleProgress from "vue3-circle-progress";
+/*import { ref } from 'vue';
+import { useLongPress } from '@vueuse/core';*/
+
+
 
 
 export default {
+  /*setup() {
+    // Your existing function
+    const myFunction = () => {
+      console.log('Long press triggered!');
+      alert('Long press action executed!');
+    };
+
+    // Attach your function to useLongPress
+    const { bindings: longPressBindings } = useLongPress(handleCheck, {
+      duration: 500, // Set duration to 500ms (or your preferred time)
+    });
+
+    return { longPressBindings };
+  },*/
+
+
     name: "App",
     components: {CircleProgress},
     data(){
