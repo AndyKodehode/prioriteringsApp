@@ -1,11 +1,10 @@
 <template> 
 <div>
    <div>
-      <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
+      <circle-progress :percent='precent' :viewport="true" :show-percent="true" class="custom-circle-progress"> 
         
       </circle-progress>
-
-      <h2>Anbefaling for kjøp: {{precent}} %</h2>
+ 
    </div>
 
    <div v-if="isVisible" >
@@ -165,6 +164,8 @@ export default {
    },
 
     methods: {
+
+
       handleEnergyChange(value){
      
       this.energyValue = value;
@@ -275,6 +276,8 @@ export default {
           let percentage = Math.floor((total / divisor) * 100);
 
           this.precent = percentage 
+
+          console.log(this.precent)
 
 
 
