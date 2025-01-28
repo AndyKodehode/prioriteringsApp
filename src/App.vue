@@ -1,5 +1,6 @@
 <template> 
 <div>
+  <!--
    <div>
       <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
         
@@ -7,6 +8,14 @@
 
       <h2>Anbefaling for kjøp: {{precent}} %</h2>
    </div>
+-->
+
+
+<div class='progressbar'>
+  <!--  you probably want a more useful message here  -->
+  <span>This <em>really awesome feature</em> requires JS 😢</span>
+</div>
+
 
    <div v-if="isVisible" >
     <ul>
