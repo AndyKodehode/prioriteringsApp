@@ -1,14 +1,14 @@
 <template> 
 <div>
-  <!--
+  
    <div>
-      <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
+      <circle-progress :percent="precent" :show-percent="true" data-tool-tip="%" :viewport="true"  class="custom-circle-progress"> 
         
       </circle-progress>
 
       <h2>Anbefaling for kjøp: {{precent}} %</h2>
    </div>
--->
+
 
 
 <div class='progressbar'>

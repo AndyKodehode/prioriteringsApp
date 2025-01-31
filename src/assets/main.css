@@ -35,6 +35,16 @@
     font-weight: bold; /* Adjust the font weight as needed */
   }
 
+  .custom-circle-progress[viewport]{
+    position: relative;
+  }
+
+  
+  .custom-circle-progress::after[viewport]{
+    position: absolute;
+    content: attr(data-tool-tip);
+  }
+
   .padding{
     padding: 20px;
    
