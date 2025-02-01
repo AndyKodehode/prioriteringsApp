@@ -297,7 +297,6 @@ export default {
 
           this.precent = percentage 
 
-          console.log(this.precent)
 
           
           let degrees = (percentage / 100) * 360;
