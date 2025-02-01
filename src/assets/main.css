@@ -1,4 +1,5 @@
 @import './base.css';
+@import './progress.css';
 
 .slider {
     width: 200px;
@@ -32,6 +33,17 @@
   .custom-circle-progress {
     font-size: 45px; /* Adjust the font size as needed */
     font-weight: bold; /* Adjust the font weight as needed */
+    background-color: transparent;
+  }
+
+  .custom-circle-progress[viewport]{
+    position: relative;
+  }
+
+  
+  .custom-circle-progress::after[viewport]{
+    position: absolute;
+    content: '%';
   }
 
   .padding{

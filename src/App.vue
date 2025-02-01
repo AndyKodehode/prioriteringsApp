@@ -1,12 +1,24 @@
 <template> 
+
+<!--<div class="inner-circle"></div>-->
 <div>
-   <div>
-      <circle-progress :percent="precent" show-percent:true   class="custom-circle-progress"> 
-        
+     <div class="circular-progress" >
+        <div class="inner-circle"></div>
+        <p class="percentage">{{precent}} %</p>
+     </div>
+
+
+  
+   <!--<div>
+      <circle-progress :viewport="true"  :is-gradient="true" :percent="precent" :show-percent="true" class="custom-circle-progress"> 
+     
+
       </circle-progress>
 
       <h2>Anbefaling for kjøp: {{precent}} %</h2>
-   </div>
+   </div>-->
+
+
 
    <div v-if="isVisible" >
     <ul>
@@ -32,49 +44,50 @@
 
     </ul>
   </div>
+  <div v-if="!isVisible">
+        <div  @dblclick="energyOff = !energyOff"
+            :class="['padding', { notActive: energyOff }]" > 
+          <!--<input type="checkbox" v-model="energyOff" >-->
+          <div class="innerDiv">
+              <label for="Energi">Energi</label>
+              <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
+              <h3>{{energyValue}}</h3>
+          </div>
+        </div>
 
-  <div  @dblclick="energyOff = !energyOff"
-       :class="['padding', { notActive: energyOff }]" > 
-    <!--<input type="checkbox" v-model="energyOff" >-->
-    <div class="innerDiv">
-        <label for="Energi">Energi</label>
-        <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
-        <h3>{{energyValue}}</h3>
-     </div>
+          <div @dblclick=" needOfOtherOff = !needOfOtherOff"
+              :class="['padding', { notActive: needOfOtherOff }]"> 
+            <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
+            <label for="AndresBehov">Andres behov</label>
+            <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
+            <h3>{{needOfOhterValue}}</h3>
+        </div>
+
+        
+          <div @dblclick="shortTermOff = !shortTermOff"
+              :class="['padding', { notActive:shortTermOff }]"> 
+            <!--<input type="checkbox" v-model="shortTermOff"  >-->
+            <label for="KortSiktig">Pris</label>
+            <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
+            <h3>{{shortTermValue}}</h3>
+        </div>
+
+        <div @dblclick="longTermOff = !longTermOff"
+              :class="['padding', { notActive:longTermOff }]"> 
+            <!--<input type="checkbox" v-model="longTermOff"  >-->
+            <label for="Langsiktig">Lang sikt</label>
+            <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
+            <h3>{{longTermValue}}</h3>
+        </div>
+
+        <div @dblclick="careerOff = !careerOff"
+              :class="['padding', { notActive:careerOff }]"> 
+            <!--<input type="checkbox"  v-model="careerOff" >-->
+            <label for="Karriere">Karriere</label>
+            <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
+            <h3>{{careerValue}}</h3>
+        </div>
   </div>
-
-    <div @dblclick=" needOfOtherOff = !needOfOtherOff"
-        :class="['padding', { notActive: needOfOtherOff }]"> 
-      <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
-      <label for="AndresBehov">Andres behov</label>
-      <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
-      <h3>{{needOfOhterValue}}</h3>
-   </div>
-
-   
-    <div @dblclick="shortTermOff = !shortTermOff"
-        :class="['padding', { notActive:shortTermOff }]"> 
-       <!--<input type="checkbox" v-model="shortTermOff"  >-->
-      <label for="KortSiktig">Pris</label>
-      <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
-      <h3>{{shortTermValue}}</h3>
-   </div>
-
-   <div @dblclick="longTermOff = !longTermOff"
-        :class="['padding', { notActive:longTermOff }]"> 
-       <!--<input type="checkbox" v-model="longTermOff"  >-->
-      <label for="Langsiktig">Lang sikt</label>
-      <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
-      <h3>{{longTermValue}}</h3>
-   </div>
-
-   <div @dblclick="careerOff = !careerOff"
-        :class="['padding', { notActive:careerOff }]"> 
-      <!--<input type="checkbox"  v-model="careerOff" >-->
-      <label for="Karriere">Karriere</label>
-      <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
-      <h3>{{careerValue}}</h3>
-   </div>
 
    <button @click="showHideAnswer" >result</button>
 
@@ -140,7 +153,9 @@ export default {
             energyOff: false,
             shortTermOff: false,
             longTermOff: false,
-            careerOff: false
+            careerOff: false,
+
+            displayPercent: "0%", // Display text
            
             
 
@@ -158,6 +173,8 @@ export default {
       shortTermOff(newValue, oldValue) {
     console.log('shortTerm changed:', newValue);
       },
+
+      
 
       
 
@@ -276,7 +293,9 @@ export default {
 
           this.precent = percentage 
 
-
+          
+          let degrees = (percentage / 100) * 360;
+          document.documentElement.style.setProperty("--progress", `${degrees}deg`);
 
 
       }, 
@@ -300,7 +319,12 @@ export default {
          console.log("energy is:"+ " " + this.energyOff)
          console.log("need of others is" + " " + this.needOfOtherOff)*/
  
-       }
+       },
+
+       handleViewport() {
+      this.displayPercent = this.percent + "%";
+    },
+
  
        }
 

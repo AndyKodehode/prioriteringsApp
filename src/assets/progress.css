@@ -1,0 +1,89 @@
+
+.progressbar{
+    height: 200px;
+}
+
+
+:root {
+    --progress-bar-width: 200px;
+    --progress-bar-height: 200px;
+    --font-size: 2rem;
+  }
+  
+  .circular-progress {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: conic-gradient(
+        orange var(--progress, 0deg),
+        rgb(211, 211, 211) var(--progress, 0deg)
+    );
+    transition: background-image 1s ease-in-out;
+  }
+
+
+/*
+  .circular-progress::before{
+    content: "";
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: blue;
+  }*/
+
+  .inner-circle {
+    position: absolute;
+    width: calc(var(--progress-bar-width) - 30px);
+    height: calc(var(--progress-bar-height) - 30px);
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+  }
+
+
+  
+  .percentage {
+    position: relative;
+    font-size: var(--font-size);
+    color: rgb(0, 0, 0, 0.8);
+  }
+
+  @keyframes percentAnimation{
+    0% {
+        background-image: conic-gradient(orange 0deg, rgb(252, 252, 252) 0deg);
+    }
+    10% {
+        background-image: conic-gradient(orange 36deg, rgb(252, 252, 252) 36deg);
+    }
+    20% {
+        background-image: conic-gradient(orange 72deg, rgb(252, 252, 252) 72deg);
+    }
+    30% {
+        background-image: conic-gradient(orange 108deg, rgb(252, 252, 252) 108deg);
+    }
+    40% {
+        background-image: conic-gradient(orange 144deg, rgb(252, 252, 252) 144deg);
+    }
+    50% {
+        background-image: conic-gradient(orange 180deg, rgb(252, 252, 252) 180deg);
+    }
+    60% {
+        background-image: conic-gradient(orange 216deg, rgb(252, 252, 252) 216deg);
+    }
+    70% {
+        background-image: conic-gradient(orange 252deg, rgb(252, 252, 252) 252deg);
+    }
+    80% {
+        background-image: conic-gradient(orange 288deg, rgb(252, 252, 252) 288deg);
+    }
+    90% {
+        background-image: conic-gradient(orange 324deg, rgb(252, 252, 252) 324deg);
+    }
+    100% {
+        background-image: conic-gradient(orange 360deg, rgb(252, 252, 252) 360deg);
+    }
+  }
