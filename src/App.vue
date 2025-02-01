@@ -50,8 +50,8 @@
           <!--<input type="checkbox" v-model="energyOff" >-->
           <div class="innerDiv">
               <label for="Energi">Energi</label>
-              <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(energyValue)" type="range" min="0" max="5" v-model="energyValue">
-              <h3>{{energyValue}}</h3>
+              <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(values.energyValue)" type="range" min="0" max="5" v-model="values.energyValue">
+              <h3>{{values.energyValue}}</h3>
           </div>
         </div>
 
@@ -59,8 +59,8 @@
               :class="['padding', { notActive: needOfOtherOff }]"> 
             <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
             <label for="AndresBehov">Andres behov</label>
-            <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(needOfOhterValue)" type="range" min="0" max="5" v-model="needOfOhterValue">
-            <h3>{{needOfOhterValue}}</h3>
+            <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(values.needOfOhterValue)" type="range" min="0" max="5" v-model="values.needOfOhterValue">
+            <h3>{{values.needOfOhterValue}}</h3>
         </div>
 
         
@@ -68,28 +68,29 @@
               :class="['padding', { notActive:shortTermOff }]"> 
             <!--<input type="checkbox" v-model="shortTermOff"  >-->
             <label for="KortSiktig">Pris</label>
-            <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(shortTermValue)" type="range" min="0" max="5" v-model="shortTermValue">
-            <h3>{{shortTermValue}}</h3>
+            <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(values.shortTermValue)" type="range" min="0" max="5" v-model="values.shortTermValue">
+            <h3>{{values.shortTermValue}}</h3>
         </div>
 
         <div @dblclick="longTermOff = !longTermOff"
               :class="['padding', { notActive:longTermOff }]"> 
             <!--<input type="checkbox" v-model="longTermOff"  >-->
             <label for="Langsiktig">Lang sikt</label>
-            <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(longTermValue)" type="range" min="0" max="5" v-model="longTermValue">
-            <h3>{{longTermValue}}</h3>
+            <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(values.longTermValue)" type="range" min="0" max="5" v-model="values.longTermValue">
+            <h3>{{values.longTermValue}}</h3>
         </div>
 
         <div @dblclick="careerOff = !careerOff"
               :class="['padding', { notActive:careerOff }]"> 
             <!--<input type="checkbox"  v-model="careerOff" >-->
             <label for="Karriere">Karriere</label>
-            <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(careerValue)" type="range" min="0" max="5" v-model="careerValue">
-            <h3>{{careerValue}}</h3>
+            <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(values.careerValue)" type="range" min="0" max="5" v-model="values.careerValue">
+            <h3>{{values.careerValue}}</h3>
         </div>
   </div>
 
    <button @click="showHideAnswer" >result</button>
+   <button @click="resetValues" >reset</button>
 
    
 
@@ -135,11 +136,14 @@ export default {
     data(){
         return{
             title:'Anders og Lars sin app',
+            values:{
             energyValue: 0,
             needOfOhterValue: 0,
             shortTermValue: 0,
             longTermValue: 0,
-            careerValue: 0,
+            careerValue: 0,},
+            
+            
 
             energyMessage: "",
             otherMessage: "",
@@ -184,34 +188,34 @@ export default {
     methods: {
       handleEnergyChange(value){
      
-      this.energyValue = value;
+      this.values.energyValue = value;
 
-      if(this.energyValue <= 1){
+      if(this.values.energyValue <= 1){
         this.energyMessage = "Dette krever mye! Kanskje bedre gjøre noe som gir deg mer energi?"
-      } else if( this.energyValue == 2){
+      } else if( this.values.energyValue == 2){
         this.energyMessage = "Krever litt energi av deg"
-      } else if( this.energyValue == 3){
+      } else if( this.values.energyValue == 3){
         this.energyMessage = "Dette hverken krever eller gir deg energi."
-      }else if( this.energyValue == 4){
+      }else if( this.values.energyValue == 4){
         this.energyMessage = "Dette gir jo litt energi!"
-      } else if( this.energyValue == 5){
+      } else if( this.values.energyValue == 5){
         this.energyMessage = "Ojoj, dette fyller opp energilageret"
       } 
       },
 
       handleNeedOfOther(value){
 
-        this.needOfOhterValue = value
+        this.values.needOfOhterValue = value
 
-        if(this.needOfOhterValue <= 1){
+        if(this.values.needOfOhterValue <= 1){
             this.otherMessage = "Dette betyr lite for de rundt deg. Kanskje du først og fremst skal tenke på deg selv?"
-         } else if( this.needOfOhterValue == 2){
+         } else if( this.values.needOfOhterValue == 2){
           this.otherMessage = "Betyr jo litt for andre, men er det verdt det?"
-         }else if( this.needOfOhterValue == 3){
+         }else if( this.values.needOfOhterValue == 3){
           this.otherMessage = "Er jo hyggelig da."
-         }else if( this.needOfOhterValue == 4){
+         }else if( this.values.needOfOhterValue == 4){
           this.otherMessage = "Dette betyr noe! Her blir de sikkert glad."
-         }else if( this.needOfOhterValue == 5){
+         }else if( this.values.needOfOhterValue == 5){
           this.otherMessage = "That’s what friends are for!"
          }
       },
@@ -219,34 +223,34 @@ export default {
 
       handleShortTerm(value){
 
-        this.shortTermValue = value
+        this.values.shortTermValue = value
 
-        if(this.shortTermValue <= 1){
+        if(this.values.shortTermValue <= 1){
             this.shortTermMessage = "Veeeeldig dyrt. Anbefaler å styre unna med mindre du virkelig innerst inne trenger dette. Inkassobyrået gnir seg i henda nå."
-         } else if( this.shortTermValue == 2){
+         } else if( this.values.shortTermValue == 2){
           this.shortTermMessage = "Ganske dyrt. Her bør du bruke noen dager til å tenke på det. Husk at du sparer til bolig!"
-         }else if( this.shortTermValue == 3){
+         }else if( this.values.shortTermValue == 3){
           this.shortTermMessage = "Litt dyrt. Vente til i morra kanskje?"
-         }else if( this.shortTermValue == 4){
+         }else if( this.values.shortTermValue == 4){
           this.shortTermMessage = "Koster jo ikke såå mye."
-         }else if( this.shortTermValue == 5){
+         }else if( this.values.shortTermValue == 5){
           this.shortTermMessage = "Koster ingen ting. Så økonomisk er det ingen ting å tape her."
          }
       },
 
       handleLongTerm(value){
 
-        this.longTermValue = value
+        this.values.longTermValue = value
 
-        if(this.longTermValue <= 1){
+        if(this.values.longTermValue <= 1){
             this.longTermMessage = "Gir null niks nada i framtidig avkastning. (men det er gøy da?)"
-         } else if( this.longTermValue == 2){
+         } else if( this.values.longTermValue == 2){
           this.longTermMessage = "Dette var litt vel kortsiktig?"
-         }else if( this.longTermValue == 3){
+         }else if( this.values.longTermValue == 3){
           this.longTermMessage = "Kanskje du får litt tilbake, men det er jo ikke helt sikkert da…"
-         }else if( this.longTermValue == 4){
+         }else if( this.values.longTermValue == 4){
           this.longTermMessage = "Her får du en del tilbake igjen på lang sikt"
-         }else if( this.longTermValue == 5){
+         }else if( this.values.longTermValue == 5){
           this.longTermMessage = "Investering!!!"
          }
       },
@@ -254,17 +258,17 @@ export default {
 
       handleCareer(value){
 
-        this.careerValue = value
+        this.values.careerValue = value
 
-        if(this.careerValue <= 1){
+        if(this.values.careerValue <= 1){
             this.careerMessage = "Blir ingen professor av dette. Spist i dag, glemt i morra."
-         } else if( this.careerValue == 2){
+         } else if( this.values.careerValue == 2){
           this.careerMessage = "Havner utenfor CV’en"
-         }else if( this.careerValue == 3){
+         }else if( this.values.careerValue == 3){
           this.careerMessage = "Kanskje du blir litt klokere?"
-         }else if( this.careerValue == 4){
+         }else if( this.values.careerValue == 4){
           this.careerMessage = "Dette kan du skrive om på Linked-in"
-         }else if( this.careerValue == 5){
+         }else if( this.values.careerValue == 5){
           this.careerMessage = "Dannelse!!"
          }
       },
@@ -274,11 +278,11 @@ export default {
 
 
           let values = [
-          { value: parseFloat(this.energyValue), isOff: this.energyOff },
-          { value: parseFloat(this.needOfOhterValue), isOff: this.needOfOtherOff },
-          { value: parseFloat(this.shortTermValue), isOff: this.shortTermOff },
-          { value: parseFloat(this.longTermValue), isOff: this.longTermOff },
-          { value: parseFloat(this.careerValue), isOff: this.careerOff }
+          { value: parseFloat(this.values.energyValue), isOff: this.energyOff },
+          { value: parseFloat(this.values.needOfOhterValue), isOff: this.needOfOtherOff },
+          { value: parseFloat(this.values.shortTermValue), isOff: this.shortTermOff },
+          { value: parseFloat(this.values.longTermValue), isOff: this.longTermOff },
+          { value: parseFloat(this.values.careerValue), isOff: this.careerOff }
         ];
 
         
@@ -293,6 +297,8 @@ export default {
 
           this.precent = percentage 
 
+          console.log(this.precent)
+
           
           let degrees = (percentage / 100) * 360;
           document.documentElement.style.setProperty("--progress", `${degrees}deg`);
@@ -302,8 +308,8 @@ export default {
 
       handleCheck(value){
     
-        this[value] = !this[value];
-        console.log("energyOff is:", this[value]);
+        this.values[value] = !this.values[value];
+        console.log("energyOff is:", this.values[value]);
 
      
 
@@ -324,6 +330,32 @@ export default {
        handleViewport() {
       this.displayPercent = this.percent + "%";
     },
+
+    resetValues(){
+
+      this.isVisible = !this.isVisible
+
+      this.values ={
+        energyValue: 0,
+        needOfOhterValue: 0,
+        shortTermValue: 0,
+        longTermValue: 0,
+        careerValue: 0,
+            
+      }
+
+            this.energyMessage= "",
+            this.otherMessage= "",
+            this.shortTermMessage= "",
+            this.longTermMessage= "",
+            this.careerMessage= "",
+
+      this.precent = 0;
+      let percentage = this.precent
+      let degrees = (percentage / 100) * 360;
+      document.documentElement.style.setProperty("--progress", `${degrees}deg`);
+
+    }
 
  
        }
