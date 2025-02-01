@@ -1,20 +1,23 @@
 <template> 
+
+<!--<div class="inner-circle"></div>-->
 <div>
+     <div class="circular-progress" >
+        <div class="inner-circle"></div>
+        <p class="percentage">{{precent}} %</p>
+     </div>
+
+
   
-   <div>
-      <circle-progress :percent="precent" :show-percent="true" data-tool-tip="%" :viewport="true"  class="custom-circle-progress"> 
-        
+   <!--<div>
+      <circle-progress :viewport="true"  :is-gradient="true" :percent="precent" :show-percent="true" class="custom-circle-progress"> 
+     
+
       </circle-progress>
 
       <h2>Anbefaling for kjøp: {{precent}} %</h2>
-   </div>
+   </div>-->
 
-
-
-<div class='progressbar'>
-  <!--  you probably want a more useful message here  -->
-  <span>This <em>really awesome feature</em> requires JS 😢</span>
-</div>
 
 
    <div v-if="isVisible" >
@@ -149,7 +152,9 @@ export default {
             energyOff: false,
             shortTermOff: false,
             longTermOff: false,
-            careerOff: false
+            careerOff: false,
+
+            displayPercent: "0%", // Display text
            
             
 
@@ -167,6 +172,8 @@ export default {
       shortTermOff(newValue, oldValue) {
     console.log('shortTerm changed:', newValue);
       },
+
+      
 
       
 
@@ -285,7 +292,9 @@ export default {
 
           this.precent = percentage 
 
-
+          
+          let degrees = (percentage / 100) * 360;
+          document.documentElement.style.setProperty("--progress", `${degrees}deg`);
 
 
       }, 
@@ -309,7 +318,12 @@ export default {
          console.log("energy is:"+ " " + this.energyOff)
          console.log("need of others is" + " " + this.needOfOtherOff)*/
  
-       }
+       },
+
+       handleViewport() {
+      this.displayPercent = this.percent + "%";
+    },
+
  
        }
 

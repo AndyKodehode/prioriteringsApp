@@ -33,6 +33,7 @@
   .custom-circle-progress {
     font-size: 45px; /* Adjust the font size as needed */
     font-weight: bold; /* Adjust the font weight as needed */
+    background-color: transparent;
   }
 
   .custom-circle-progress[viewport]{
@@ -42,7 +43,7 @@
   
   .custom-circle-progress::after[viewport]{
     position: absolute;
-    content: attr(data-tool-tip);
+    content: '%';
   }
 
   .padding{
