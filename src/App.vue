@@ -86,6 +86,17 @@
           </p>
           </div>
       </div>
+
+      <div class="answerCont" v-if="!joyOff">
+        <div class="answerIconDiv">
+          <img src="./components/icons/Glede3.svg" alt="">
+         </div>
+         <div class="answerTextDiv">
+          <p >
+            {{joyMessage}}
+          </p>
+          </div>
+      </div>
     </ul>
   </section>
 
@@ -161,6 +172,24 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div @dblclick="joyOff = !joyOff"
+              :class="['padding', { notActive:joyOff }]"> 
+            <!--<input type="checkbox"  v-model="careerOff" >-->
+            <div class="slideInnerDiv">
+                <div class="labelDiv">
+                    <label class="label" for="glede">Glede</label>
+                    <input :disabled="joyOff" class="slider" id="glede"  @input="handleJoy(values.joyValue)" type="range" min="0" max="5" v-model="values.joyValue">
+                 </div>
+                <div class="slideValueDiv">
+                   <h3 class="slideValueText">{{values.joyValue}}</h3>
+                </div>
+            </div>
+        </div>
+
+        
       </section>
 </div>
 </template>
@@ -202,7 +231,9 @@ export default {
             needOfOhterValue: 0,
             shortTermValue: 0,
             longTermValue: 0,
-            careerValue: 0,},
+            careerValue: 0,
+            joyValue: 0
+            },
             
             
 
@@ -211,6 +242,7 @@ export default {
             shortTermMessage: "",
             longTermMessage: "",
             careerMessage: "",
+            joyMessage: "",
 
             isVisible: false,
             precent: 0,
@@ -219,6 +251,7 @@ export default {
             shortTermOff: false,
             longTermOff: false,
             careerOff: false,
+            joyOff: false,
 
             displayPercent: "0%", // Display text
            
@@ -334,6 +367,23 @@ export default {
          }
       },
 
+      handleJoy(value){
+
+     this.values.joyValue = value
+
+      if(this.values.joyValue <= 1){
+          this.joyMessage = "Blir ingen professor av dette. Spist i dag, glemt i morra."
+      } else if( this.values.joyValue == 2){
+        this.joyMessage = "Havner utenfor CV’en"
+      }else if( this.values.joyValue == 3){
+        this.joyMessage = "Kanskje du blir litt klokere?"
+      }else if( this.values.joyValue == 4){
+        this.joyMessage = "Dette kan du skrive om på Linked-in"
+      }else if( this.values.joyValue == 5){
+        this.joyMessage = "Dannelse!!"
+      }
+      },
+
       showHideAnswer(){
           this.isVisible = !this.isVisible
 
@@ -343,7 +393,8 @@ export default {
           { value: parseFloat(this.values.needOfOhterValue), isOff: this.needOfOtherOff },
           { value: parseFloat(this.values.shortTermValue), isOff: this.shortTermOff },
           { value: parseFloat(this.values.longTermValue), isOff: this.longTermOff },
-          { value: parseFloat(this.values.careerValue), isOff: this.careerOff }
+          { value: parseFloat(this.values.careerValue), isOff: this.careerOff },
+          { value: parseFloat(this.values.joyValue), isOff: this.joyOff }
         ];
 
         
@@ -401,6 +452,7 @@ export default {
         shortTermValue: 0,
         longTermValue: 0,
         careerValue: 0,
+        joyValue:0
             
       }
 
@@ -409,6 +461,7 @@ export default {
             this.shortTermMessage= "",
             this.longTermMessage= "",
             this.careerMessage= "",
+            this.joyMessage= ""
 
       this.precent = 0;
       let percentage = this.precent
