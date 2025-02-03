@@ -1,11 +1,19 @@
 <template> 
 
 <!--<div class="inner-circle"></div>-->
-<div>
+<div class="body">
+  <section class="topSection">
      <div class="circular-progress" >
         <div class="inner-circle"></div>
         <p class="percentage">{{precent}} %</p>
      </div>
+
+     <div class="buttonDiv">
+        <button class="topBtn" @click="showHideAnswer" >Resultat</button>
+        <button class="topBtn" @click="resetValues" >Nullstill</button>
+     </div>
+  </section>
+
 
 
   
@@ -20,87 +28,140 @@
 
 
 
-   <div v-if="isVisible" >
+   <section class="resultDiv" v-if="isVisible" >
     <ul>
-       <li v-if="!energyOff" >
+      <div class="answerCont" v-if="!energyOff" >
+
+       <div class="answerIconDiv">
+        <img src="./components/icons/Energi.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
          {{energyMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!needOfOtherOff" >
+      <div class="answerCont" v-if="!needOfOtherOff" >
+        <div class="answerIconDiv">
+        <img src="./components/icons/Andre.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{otherMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!shortTermOff">
+
+       <div class="answerCont" v-if="!shortTermOff">
+        <div class="answerIconDiv">
+        <img src="./components/icons/Pris.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{shortTermMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!longTermOff">
+       <div class="answerCont" v-if="!longTermOff">
+        <div class="answerIconDiv">
+        <img src="./components/icons/Langsiktig.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{longTermMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!careerOff">
-        {{careerMessage}}
-       </li>
-
+       <div class="answerCont" v-if="!careerOff">
+        <div class="answerIconDiv">
+          <img src="./components/icons/Karriere.svg" alt="">
+         </div>
+         <div class="answerTextDiv">
+          <p >
+            {{careerMessage}}
+          </p>
+          </div>
+      </div>
     </ul>
-  </div>
-  <div v-if="!isVisible">
+  </section>
+
+
+  <section class="sliderSection" v-if="!isVisible">
         <div  @dblclick="energyOff = !energyOff"
             :class="['padding', { notActive: energyOff }]" > 
           <!--<input type="checkbox" v-model="energyOff" >-->
-          <div class="innerDiv">
-              <label for="Energi">Energi</label>
+          <div class="slideInnerDiv">
+            <div class="labelDiv">
+              <label class="label" for="Energi">Energi</label>
               <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(values.energyValue)" type="range" min="0" max="5" v-model="values.energyValue">
+            </div>
+            <div class="slideValueDiv"> 
               <h3>{{values.energyValue}}</h3>
+            </div>
           </div>
         </div>
 
           <div @dblclick=" needOfOtherOff = !needOfOtherOff"
               :class="['padding', { notActive: needOfOtherOff }]"> 
             <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
-            <label for="AndresBehov">Andres behov</label>
-            <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(values.needOfOhterValue)" type="range" min="0" max="5" v-model="values.needOfOhterValue">
-            <h3>{{values.needOfOhterValue}}</h3>
+            <div class="slideInnerDiv">
+              <div class="labelDiv">
+                <label class="label" for="AndresBehov">Andres behov</label>
+                <input :disabled="needOfOtherOff" class="slider" id="AndresBehov"  @input="handleNeedOfOther(values.needOfOhterValue)" type="range" min="0" max="5" v-model="values.needOfOhterValue">
+              </div> 
+              <div class="slideValueDiv"> 
+                <h3>{{values.needOfOhterValue}}</h3>
+              </div>
+            </div>
         </div>
 
         
           <div @dblclick="shortTermOff = !shortTermOff"
               :class="['padding', { notActive:shortTermOff }]"> 
             <!--<input type="checkbox" v-model="shortTermOff"  >-->
-            <label for="KortSiktig">Pris</label>
-            <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(values.shortTermValue)" type="range" min="0" max="5" v-model="values.shortTermValue">
-            <h3>{{values.shortTermValue}}</h3>
+            <div class="slideInnerDiv">
+              <div class="labelDiv">
+                <label class="label" for="KortSiktig">Pris</label>
+                <input :disabled="shortTermOff" class="slider" id="KortSiktig"  @input="handleShortTerm(values.shortTermValue)" type="range" min="0" max="5" v-model="values.shortTermValue">
+              </div> 
+              <div class="slideValueDiv">  
+                <h3>{{values.shortTermValue}}</h3>
+              </div>
+            </div>
         </div>
 
         <div @dblclick="longTermOff = !longTermOff"
               :class="['padding', { notActive:longTermOff }]"> 
             <!--<input type="checkbox" v-model="longTermOff"  >-->
-            <label for="Langsiktig">Lang sikt</label>
-            <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(values.longTermValue)" type="range" min="0" max="5" v-model="values.longTermValue">
-            <h3>{{values.longTermValue}}</h3>
+            <div class="slideInnerDiv">
+              <div class="labelDiv">
+                <label class="label" for="Langsiktig">Lang sikt</label>
+                <input :disabled="longTermOff" class="slider" id="Langsiktig"  @input="handleLongTerm(values.longTermValue)" type="range" min="0" max="5" v-model="values.longTermValue">
+              </div>  
+              <div class="slideValueDiv"> 
+                <h3>{{values.longTermValue}}</h3>
+              </div>
+            </div> 
         </div>
 
         <div @dblclick="careerOff = !careerOff"
               :class="['padding', { notActive:careerOff }]"> 
             <!--<input type="checkbox"  v-model="careerOff" >-->
-            <label for="Karriere">Karriere</label>
-            <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(values.careerValue)" type="range" min="0" max="5" v-model="values.careerValue">
-            <h3>{{values.careerValue}}</h3>
+            <div class="slideInnerDiv">
+                <div class="labelDiv">
+                    <label class="label" for="Karriere">Karriere</label>
+                    <input :disabled="careerOff" class="slider" id="Karriere"  @input="handleCareer(values.careerValue)" type="range" min="0" max="5" v-model="values.careerValue">
+                 </div>
+                <div class="slideValueDiv">
+                   <h3 class="slideValueText">{{values.careerValue}}</h3>
+                </div>
+            </div>
         </div>
-  </div>
-
-   <button @click="showHideAnswer" >result</button>
-   <button @click="resetValues" >reset</button>
-
-   
-
-   
-    
-
-   
-
-    
-
+      </section>
 </div>
 </template>
 

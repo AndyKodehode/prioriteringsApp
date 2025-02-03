@@ -1,9 +1,29 @@
 @import './base.css';
 @import './progress.css';
 
+.body{
+  max-width: 400px ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: "Poppins", serif;
+}
+
+.sliderSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 lightgray;
+  width: 90%;
+  border-radius: 10px;
+}
+
 .slider {
-    width: 200px;
-    height: 15px;
+    width: 100%;
+    height: 10px;
     border-radius: 5px;  
     background: #d3d3d3;
     outline: none;
@@ -14,18 +34,18 @@
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
+    width: 7px;
     height: 25px;
     border-radius: 50%; 
-    background: #04AA6D;
+    background: #03B5AA;
     cursor: pointer;
   }
   
   .slider::-moz-range-thumb {
-    width: 25px;
+    width: 10px;
     height: 25px;
-    border-radius: 50%;
-    background: #04AA6D;
+    border-radius: 30%;
+    background: #03B5AA;
     cursor: pointer;
   }
 
@@ -47,10 +67,115 @@
   }
 
   .padding{
-    padding: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
    
   }
 
 .notActive{
-  background-color: red;
+  background-color: rgba(216, 203, 203, 0.51);
+}
+
+.slideInnerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+  height: 80px;
+}
+
+.labelDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.label{
+  width: 120px;
+}
+
+.slideValueDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 30px;
+}
+
+.buttonDiv{
+  display: flex;
+  position: absolute;
+  top: 255px;
+  gap: 5px;
+  
+  
+}
+
+.topSection{
+  width: 90%;
+  height: 250px;
+  box-shadow: 0 4px 8px 0 lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+
+.topBtn{
+  width: 120px;
+  padding: 10px;
+  background-color: #9182D0;
+  border-radius: 5px;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  color: white;
+}
+
+.resultDiv{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultDiv ul{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  padding: 0;
+  
+  
+}
+
+.answerIconDiv{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.answerIconDiv img{
+  max-width: 30px;
+}
+
+
+li{
+  list-style: none;
+}
+
+.answerCont{
+  display: flex;
+  gap: 5px;
+}
+
+.answerTextDiv{
+  width: 100%;
 }
