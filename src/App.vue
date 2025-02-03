@@ -30,26 +30,62 @@
 
    <section class="resultDiv" v-if="isVisible" >
     <ul>
-       <li v-if="!energyOff" >
+      <div class="answerCont" v-if="!energyOff" >
+
+       <div class="answerIconDiv">
+        <img src="./components/icons/Energi.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
          {{energyMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!needOfOtherOff" >
+      <div class="answerCont" v-if="!needOfOtherOff" >
+        <div class="answerIconDiv">
+        <img src="./components/icons/Andre.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{otherMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!shortTermOff">
+
+       <div class="answerCont" v-if="!shortTermOff">
+        <div class="answerIconDiv">
+        <img src="./components/icons/Pris.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{shortTermMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!longTermOff">
+       <div class="answerCont" v-if="!longTermOff">
+        <div class="answerIconDiv">
+        <img src="./components/icons/Langsiktig.svg" alt="">
+       </div>
+       <div class="answerTextDiv">
+       <p >
         {{longTermMessage}}
-       </li>
+       </p>
+      </div>
+      </div>
 
-       <li v-if="!careerOff">
-        {{careerMessage}}
-       </li>
-
+       <div class="answerCont" v-if="!careerOff">
+        <div class="answerIconDiv">
+          <img src="./components/icons/Karriere.svg" alt="">
+         </div>
+         <div class="answerTextDiv">
+          <p >
+            {{careerMessage}}
+          </p>
+          </div>
+      </div>
     </ul>
   </section>
 

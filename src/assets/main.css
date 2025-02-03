@@ -139,5 +139,43 @@
 }
 
 .resultDiv{
-  margin-top: 20px;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultDiv ul{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  padding: 0;
+  
+  
+}
+
+.answerIconDiv{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.answerIconDiv img{
+  max-width: 30px;
+}
+
+
+li{
+  list-style: none;
+}
+
+.answerCont{
+  display: flex;
+  gap: 5px;
+}
+
+.answerTextDiv{
+  width: 100%;
 }
