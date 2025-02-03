@@ -102,22 +102,21 @@
 
 
   <section class="sliderSection" v-if="!isVisible">
-        <div  @dblclick="energyOff = !energyOff"
-            :class="['padding', { notActive: energyOff }]" > 
+        <div  :class="['padding', { notActive: energyOff }]" > 
           <!--<input type="checkbox" v-model="energyOff" >-->
           <div class="slideInnerDiv">
             <div class="labelDiv">
               <label class="label" for="Energi">Energi</label>
-              <input :disabled="energyOff" class="slider" id="Energi"  @input="handleEnergyChange(values.energyValue)" type="range" min="0" max="5" v-model="values.energyValue">
+              <input :disabled="!energyOff" :class="[energyOff ? 'sliderActive' : 'slider']" id="Energi"  @input="handleEnergyChange(values.energyValue)" type="range" min="0" max="5" v-model="values.energyValue">
             </div>
             <div class="slideValueDiv"> 
               <h3>{{values.energyValue}}</h3>
+              <input type="checkbox" v-model="energyOff" >
             </div>
           </div>
         </div>
 
-          <div @dblclick=" needOfOtherOff = !needOfOtherOff"
-              :class="['padding', { notActive: needOfOtherOff }]"> 
+          <div :class="['padding', { notActive: needOfOtherOff }]"> 
             <!--<input type="checkbox" v-model="needOfOtherOff"  >-->
             <div class="slideInnerDiv">
               <div class="labelDiv">
@@ -126,13 +125,13 @@
               </div> 
               <div class="slideValueDiv"> 
                 <h3>{{values.needOfOhterValue}}</h3>
+                <input type="checkbox" v-model="needOfOtherOff" >
               </div>
             </div>
         </div>
 
         
-          <div @dblclick="shortTermOff = !shortTermOff"
-              :class="['padding', { notActive:shortTermOff }]"> 
+          <div :class="['padding', { notActive:shortTermOff }]"> 
             <!--<input type="checkbox" v-model="shortTermOff"  >-->
             <div class="slideInnerDiv">
               <div class="labelDiv">
@@ -141,12 +140,12 @@
               </div> 
               <div class="slideValueDiv">  
                 <h3>{{values.shortTermValue}}</h3>
+                <input type="checkbox" v-model="shortTermOff" >
               </div>
             </div>
         </div>
 
-        <div @dblclick="longTermOff = !longTermOff"
-              :class="['padding', { notActive:longTermOff }]"> 
+        <div :class="['padding', { notActive:longTermOff }]"> 
             <!--<input type="checkbox" v-model="longTermOff"  >-->
             <div class="slideInnerDiv">
               <div class="labelDiv">
@@ -155,12 +154,12 @@
               </div>  
               <div class="slideValueDiv"> 
                 <h3>{{values.longTermValue}}</h3>
+                <input type="checkbox" v-model="longTermOff" >
               </div>
             </div> 
         </div>
 
-        <div @dblclick="careerOff = !careerOff"
-              :class="['padding', { notActive:careerOff }]"> 
+        <div :class="['padding', { notActive:careerOff }]" > 
             <!--<input type="checkbox"  v-model="careerOff" >-->
             <div class="slideInnerDiv">
                 <div class="labelDiv">
@@ -169,14 +168,14 @@
                  </div>
                 <div class="slideValueDiv">
                    <h3 class="slideValueText">{{values.careerValue}}</h3>
+                   <input type="checkbox" v-model="careerOff" >
                 </div>
             </div>
         </div>
 
 
 
-        <div @dblclick="joyOff = !joyOff"
-              :class="['padding', { notActive:joyOff }]"> 
+        <div :class="['padding', { notActive:joyOff }]"> 
             <!--<input type="checkbox"  v-model="careerOff" >-->
             <div class="slideInnerDiv">
                 <div class="labelDiv">
@@ -185,6 +184,7 @@
                  </div>
                 <div class="slideValueDiv">
                    <h3 class="slideValueText">{{values.joyValue}}</h3>
+                   <input type="checkbox" v-model="joyOff" >
                 </div>
             </div>
         </div>
@@ -271,6 +271,11 @@ export default {
       shortTermOff(newValue, oldValue) {
     console.log('shortTerm changed:', newValue);
       },
+
+      careerOff(newValue, oldValue) {
+    console.log('shortTerm changed:', newValue);
+      },
+
 
       
 
@@ -399,7 +404,7 @@ export default {
 
         
 
-          let activeValues = values.filter(item => !item.isOff);
+          let activeValues = values.filter(item => item.isOff);
 
           
 
