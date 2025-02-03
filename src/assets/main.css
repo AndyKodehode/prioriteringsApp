@@ -138,6 +138,18 @@
   color: white;
 }
 
+.borderBtn{
+  width: 120px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  color: #9182D0;
+  border-width: 2px;
+  border-color: #9182D0;
+}
+
 .resultDiv{
   margin-top: 30px;
   width: 100%;
@@ -158,12 +170,19 @@
 
 .answerIconDiv{
   width: 20%;
+  height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  /*box-shadow: 2px 2px 10px #c1c0c0;*/
+  padding: 5px;
+  border-radius: 10px;
+ 
 }
 
 .answerIconDiv img{
-  max-width: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 
@@ -173,7 +192,8 @@ li{
 
 .answerCont{
   display: flex;
-  gap: 5px;
+  align-items: center;
+  gap: 15px;
 }
 
 .answerTextDiv{

@@ -10,7 +10,7 @@
 
      <div class="buttonDiv">
         <button class="topBtn" @click="showHideAnswer" >Resultat</button>
-        <button class="topBtn" @click="resetValues" >Nullstill</button>
+        <button class="borderBtn" @click="resetValues" >Nullstill</button>
      </div>
   </section>
 
