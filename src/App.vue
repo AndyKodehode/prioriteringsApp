@@ -1,7 +1,7 @@
-<template> 
+<template > 
 
 <!--<div class="inner-circle"></div>-->
-<div class="body">
+<div class="body" >
   <section class="topSection">
      <div class="circular-progress" >
         <div class="inner-circle"></div>
@@ -111,9 +111,10 @@
             </div>
             <div class="slideValueDiv"> 
               <h3>{{values.energyValue}}</h3>
-              <label for="checkbox">
-                 <input type="checkbox" class="checkbox" v-model="energyOff" >
-                 <span>Velg</span>
+              <label for="checkbox" class="wrapper">
+                    <input type="checkbox" class="checkbox" v-model="energyOff">
+                    <span class="checkmark" :class="[ energyOff ? 'checked' : 'checkmark' ]"></span>
+                    
               </label>
             </div>
           </div>
@@ -128,10 +129,11 @@
               </div> 
               <div class="slideValueDiv"> 
                 <h3>{{values.needOfOhterValue}}</h3>
-                <label for="checkbox">
-                    <input type="checkbox" class="checkbox" v-model="needOfOtherOff" >
-                    <span>Velg</span>
-                </label>
+                <label for="checkbox" class="wrapper">
+                    <input type="checkbox" class="checkbox" v-model="needOfOtherOff">
+                    <span class="checkmark" :class="[ needOfOtherOff ? 'checked' : 'checkmark' ]"></span>
+                    
+                  </label>
               </div>
             </div>
         </div>
@@ -146,10 +148,11 @@
               </div> 
               <div class="slideValueDiv">  
                 <h3>{{values.shortTermValue}}</h3>
-                <label for="checkbox">
-                  <input type="checkbox" class="checkbox" v-model="shortTermOff" >
-                  <span>Velg</span>
-              </label>
+                <label for="checkbox" class="wrapper">
+                    <input type="checkbox" class="checkbox" v-model="shortTermOff">
+                    <span class="checkmark" :class="[ shortTermOff ? 'checked' : 'checkmark' ]"></span>
+                    
+                  </label>
               </div>
             </div>
         </div>
@@ -163,10 +166,11 @@
               </div>  
               <div class="slideValueDiv"> 
                 <h3>{{values.longTermValue}}</h3>
-                <label for="checkbox">
-                    <input type="checkbox" class="checkbox" v-model="longTermOff" >
-                    <span>Velg</span>
-                </label>
+                <label for="checkbox" class="wrapper">
+                    <input type="checkbox" class="checkbox" v-model="longTermOff">
+                    <span class="checkmark" :class="[ longTermOff ? 'checked' : 'checkmark' ]"></span>
+                    
+                  </label>
               </div>
             </div> 
         </div>
@@ -180,9 +184,10 @@
                  </div>
                 <div class="slideValueDiv">
                    <h3 class="slideValueText">{{values.careerValue}}</h3>
-                   <label for="checkbox">
-                    <input type="checkbox" class="checkbox" v-model="careerOff" >
-                    <span>Velg</span>
+                   <label for="checkbox" class="wrapper">
+                    <input type="checkbox" class="checkbox" v-model="careerOff">
+                    <span class="checkmark" :class="[ careerOff ? 'checked' : 'checkmark' ]"></span>
+                    
                   </label>
                 </div>
             </div>
@@ -199,9 +204,9 @@
                  </div>
                 <div class="slideValueDiv">
                    <h3 class="slideValueText">{{values.joyValue}}</h3>
-                   <label for="checkbox">
-                      <input type="checkbox" class="checkbox" v-model="joyOff" >
-                      <span>Velg</span>
+                   <label for="checkbox" class="wrapper">
+                        <input type="checkbox" class="checkbox" v-model="joyOff">
+                        <span class="checkmark" :class="[ joyOff ? 'checked' : 'checkmark' ]"></span>
                   </label>
                 </div>
             </div>
