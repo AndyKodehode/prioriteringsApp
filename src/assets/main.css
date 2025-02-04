@@ -1,5 +1,6 @@
 @import './base.css';
 @import './progress.css';
+@import './checkbox.css';
 
 .body{
   max-width: 400px ;
@@ -130,7 +131,12 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 30px;
+  width: 70px;
+  gap: 20px
+}
+
+.slideValueDiv input{
+  width: 20px;
 }
 
 .buttonDiv{
@@ -227,3 +233,5 @@ li{
 .answerTextDiv{
   width: 100%;
 }
+
+
