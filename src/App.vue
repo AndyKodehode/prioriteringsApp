@@ -338,7 +338,7 @@ export default {
          }else if( this.values.needOfOhterValue == 4){
           this.otherMessage = "Dette betyr noe! Her blir de sikkert glad."
          }else if( this.values.needOfOhterValue == 5){
-          this.otherMessage = "That’s what friends are for!"
+          this.otherMessage = "Viktig å stille opp! That’s what friends are for!"
          }
       },
 
