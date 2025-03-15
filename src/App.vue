@@ -471,8 +471,8 @@ export default {
     },
 
     resetValues(){
-
-      this.isVisible = !this.isVisible
+      if(this.isVisible == true){
+      this.isVisible = false } 
 
       this.values ={
         energyValue: 0,
@@ -490,6 +490,13 @@ export default {
             this.longTermMessage= "",
             this.careerMessage= "",
             this.joyMessage= ""
+      
+            this.needOfOtherOff = false,
+            this.energyOff= false,
+            this.shortTermOff= false,
+            this.longTermOff= false,
+            this.careerOff= false,
+            this.joyOff= false,
 
       this.precent = 0;
       let percentage = this.precent
