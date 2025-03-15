@@ -400,15 +400,15 @@ export default {
      this.values.joyValue = value
 
       if(this.values.joyValue <= 1){
-          this.joyMessage = "Blir ingen professor av dette. Spist i dag, glemt i morra."
+          this.joyMessage = "Gir ikke nevneverdig glede"
       } else if( this.values.joyValue == 2){
-        this.joyMessage = "Havner utenfor CV’en"
+        this.joyMessage = "Kanksje spare til noe gøyere?"
       }else if( this.values.joyValue == 3){
-        this.joyMessage = "Kanskje du blir litt klokere?"
+        this.joyMessage = "Det gir jo litt glede"
       }else if( this.values.joyValue == 4){
-        this.joyMessage = "Dette kan du skrive om på Linked-in"
+        this.joyMessage = "Kan gi deg avbrekk i hverdagen"
       }else if( this.values.joyValue == 5){
-        this.joyMessage = "Dannelse!!"
+        this.joyMessage = "Dette er jo veldig gøy!"
       }
       },
 
