@@ -330,7 +330,7 @@ export default {
         this.values.needOfOhterValue = value
 
         if(this.values.needOfOhterValue <= 1){
-            this.otherMessage = "Dette betyr lite for de rundt deg. Kanskje du først og fremst skal tenke på deg selv?"
+            this.otherMessage = "Dette har lite å si for de rundt deg. Kanskje du først og fremst skal tenke på deg selv her?"
          } else if( this.values.needOfOhterValue == 2){
           this.otherMessage = "Betyr jo litt for andre, men er det verdt det?"
          }else if( this.values.needOfOhterValue == 3){
@@ -413,7 +413,9 @@ export default {
       },
 
       showHideAnswer(){
-          this.isVisible = !this.isVisible
+
+
+          
 
 
           let values = [
@@ -434,13 +436,23 @@ export default {
           let total = activeValues.reduce((sum, item) => sum + item.value, 0);
           let divisor = activeValues.length * 5;  // Maximum possible total for active properties
           let percentage = Math.floor((total / divisor) * 100);
+          
+          if(percentage >= 0){
+            this.precent = percentage 
+            this.isVisible = !this.isVisible
 
-          this.precent = percentage 
+            let degrees = (percentage / 100) * 360;
+            document.documentElement.style.setProperty("--progress", `${degrees}deg`);
+          }
 
 
           
-          let degrees = (percentage / 100) * 360;
-          document.documentElement.style.setProperty("--progress", `${degrees}deg`);
+
+
+          
+          
+
+          
 
 
       }, 
