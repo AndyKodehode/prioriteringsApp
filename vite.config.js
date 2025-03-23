@@ -10,7 +10,36 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
-    VitePWA()
+    VitePWA({ 
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
+      injectRegister: 'auto',
+
+      manifest: {
+        name: 'Prioriterings-App',
+        short_name: 'PA',
+        description: 'En liten app for å tenke igjennom valg i hverdagen',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: '/icons/pwa-test.svg',
+            sizes: '192x192',
+            type: 'image/svg'
+          },
+          {
+            src: '/icons/pwa-test.svg',
+            sizes: '512x512',
+            type: 'image/svg'
+          }
+        ]
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+      }
+
+     })
   ],
   resolve: {
     alias: {
