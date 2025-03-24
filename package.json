@@ -11,7 +11,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "@vueuse/core": "^12.5.0",
+    "vite-plugin-pwa": "^0.21.1",
+    "vue": "^3.5.13",
+    "vue-ellipse-progress": "^2.2.0",
+    "vue3-circle-progress": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
